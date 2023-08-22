@@ -1,42 +1,29 @@
-import { useState } from 'react';
-import CreateNote from './components/CreateNote';
+import { Box, CssBaseline, Paper } from '@mui/material';
+import React from 'react';
 import Footer from './components/Footer';
-import Header from './components/Header';
-import Note from './components/Note';
+import MainContent from './components/molecules/MainContent';
+import SideBar from './components/molecules/SideBar';
 
-const App = () => {
-	const [addItem, setAddItem] = useState<any>([]);
-	const addNote = (note: any) => {
-		//alert("i am clicked");
-		setAddItem((prevData: any) => {
-			return [...prevData, note];
-		});
-		console.log(note);
-	};
-	const onDelete = (id: any) => {
-		setAddItem((prevData: any) =>
-			prevData.filter((currdata: any, index: number) => {
-				return index !== id;
-			})
-		);
-	};
+const App: React.FC = () => {
 	return (
-		<>
-			<Header />
-			<CreateNote passNote={addNote} />
-			{addItem.map((val: any, index: number) => {
-				return (
-					<Note
-						key={index}
-						id={index}
-						title={val.title}
-						content={val.content}
-						deleteItem={onDelete}
-					/>
-				);
-			})}
+		<Box minHeight='100vh' display='flex' flexDirection='column'>
+			<CssBaseline />
+			{/* <Header /> */}
+			<Paper
+				component='main'
+				sx={{
+					width: '100%',
+					display: 'flex',
+					padding: 0,
+					margin: 0,
+					height: '94vh',
+				}}
+			>
+				<SideBar />
+				<MainContent />
+			</Paper>
 			<Footer />
-		</>
+		</Box>
 	);
 };
 
