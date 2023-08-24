@@ -1,29 +1,25 @@
-import { Paper, useMediaQuery, useTheme } from '@mui/material';
+import { Paper } from '@mui/material';
 import React from 'react';
 
 import useNoteManager from '../../hooks/noteManager';
-import NoteCard from '../NoteCard';
-import CreateNote from '../CreateNote';
+import { NotesGrid } from './NotesGrid';
+import { SideBar } from './SideBar';
 
 const MainContent: React.FC = () => {
-	const theme = useTheme();
-	const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-	const contentStyles = {
-		padding: isSmallScreen ? theme.spacing(2) : theme.spacing(3),
-		margin: 0,
-		width: '100%',
-		height: '100%',
-	};
-
 	const { notes, addNote, deleteNote } = useNoteManager();
 
 	return (
-		<Paper sx={contentStyles}>
-			<CreateNote addNote={addNote} />
-			{notes.map((note: Note, index: number) => {
-				return <NoteCard key={index} note={note} deleteNote={deleteNote} />;
-			})}
+		<Paper
+			component='main'
+			sx={{
+				width: '100%',
+				display: 'grid',
+				gridTemplateColumns: '1fr 9fr',
+				height: 'calc(100vh - 2.5rem)',
+			}}
+		>
+			<SideBar addNote={addNote} />
+			<NotesGrid notes={notes} deleteNote={deleteNote} />
 		</Paper>
 	);
 };
