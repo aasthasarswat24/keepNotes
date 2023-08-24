@@ -5,10 +5,10 @@ const Logo: React.FC = () => {
 	return (
 		<Box display='flex' alignItems='center' justifyContent='center'>
 			<Typography
-				variant='body1'
-				color='black'
+				color='primary.dark'
 				marginBottom={2}
-				fontWeight={700}
+				fontWeight={600}
+				fontSize='1rem'
 			>
 				Write Memo
 			</Typography>
