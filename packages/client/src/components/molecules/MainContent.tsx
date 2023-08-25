@@ -1,12 +1,12 @@
 import { Paper } from '@mui/material';
 import React from 'react';
 
-import useNoteManager from '../../hooks/noteManager';
+import { useNoteManager } from '../../hooks/noteManager';
 import { NotesGrid } from './NotesGrid';
 import { SideBar } from './SideBar';
 
 const MainContent: React.FC = () => {
-	const { notes, addNote, deleteNote } = useNoteManager();
+	const { notes, addNote, editNote, deleteNote } = useNoteManager();
 
 	return (
 		<Paper
@@ -19,7 +19,12 @@ const MainContent: React.FC = () => {
 			}}
 		>
 			<SideBar addNote={addNote} />
-			<NotesGrid notes={notes} deleteNote={deleteNote} />
+			<NotesGrid
+				notes={notes}
+				editNote={editNote}
+				addNote={addNote}
+				deleteNote={deleteNote}
+			/>
 		</Paper>
 	);
 };
