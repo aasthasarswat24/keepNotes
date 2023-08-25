@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useNoteManager = () => {
+export const useNoteManager = () => {
 	const [notes, setNotes] = useState<Note[]>([]);
 
 	const addNote = (note: Note) => {
@@ -23,7 +23,18 @@ const useNoteManager = () => {
 		}
 	};
 
-	return { notes, addNote, deleteNote };
-};
+	const editNote = (noteDetails: Note) => {
+		if (noteDetails.id) {
+			setNotes((prevNotes) => {
+				const editedNotes: Note[] = prevNotes.map((note) => {
+					return note.id === noteDetails.id
+						? { ...note, ...noteDetails }
+						: note;
+				});
+				return editedNotes;
+			});
+		}
+	};
 
-export default useNoteManager;
+	return { notes, addNote, deleteNote, editNote };
+};
