@@ -3,6 +3,7 @@ import { Box, Link, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import Logo from '../atoms/Logo';
+import { generateUniqueId } from '../../helpers/generateUniqueId';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	sideBarContainer: {
@@ -21,6 +22,16 @@ interface SideBarProps {
 
 export const SideBar: React.FC<SideBarProps> = ({ addNote }) => {
 	const classes = useStyles();
+
+	const handleAddNote = (note: Note) => {
+		const noteId = generateUniqueId();
+		const newNote = {
+			id: noteId,
+			title: note.title,
+			description: note.description,
+		};
+		addNote(newNote);
+	};
 
 	const DUMMY_NOTE: Note = {
 		id: `${Math.random}note`,
@@ -43,7 +54,7 @@ export const SideBar: React.FC<SideBarProps> = ({ addNote }) => {
 				sx={{ padding: '10px', margin: '0 auto' }}
 				component='button'
 				onClick={() => {
-					addNote(DUMMY_NOTE);
+					handleAddNote(DUMMY_NOTE);
 				}}
 			>
 				<AddIcon fontSize='large' />
