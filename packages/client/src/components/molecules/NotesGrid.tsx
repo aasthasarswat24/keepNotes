@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	gridContainer: {
 		display: 'grid',
-		gap: '20px',
+		gap: 12,
 		gridTemplateColumns: 'repeat(5,1fr)',
 		justifyContent: 'space-between',
 		placeItems: 'start',
@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	gridItem: {
 		width: '100%',
-		height: '100%',
 		display: 'flex',
 		flexDirection: 'column',
 	},
@@ -31,11 +30,19 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface NotesGridProps {
 	notes: Note[];
+	addNote: (note: Note) => void;
+	editNote: (note: Note) => void;
 	deleteNote: (id: string) => void;
 }
 
-export const NotesGrid: React.FC<NotesGridProps> = ({ notes, deleteNote }) => {
+export const NotesGrid: React.FC<NotesGridProps> = ({
+	notes,
+	editNote,
+	addNote,
+	deleteNote,
+}) => {
 	const classes = useStyles();
+	const reversedNotes = notes.slice().reverse();
 
 	return (
 		<Box className={classes.notesPageContainer}>
@@ -51,9 +58,14 @@ export const NotesGrid: React.FC<NotesGridProps> = ({ notes, deleteNote }) => {
 					Notes
 				</Typography>
 				<div className={classes.gridContainer}>
-					{notes.map((item) => (
+					{reversedNotes.map((item) => (
 						<Grid key={item.id} item className={classes.gridItem}>
-							<NoteCard note={item} deleteNote={deleteNote} />
+							<NoteCard
+								note={item}
+								editNote={editNote}
+								addNote={addNote}
+								deleteNote={deleteNote}
+							/>
 						</Grid>
 					))}
 				</div>
