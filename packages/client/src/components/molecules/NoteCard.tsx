@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
 
-import { NoteEditable } from './NoteDialog';
+import { NoteEditable } from './NoteEditable';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	card: {
