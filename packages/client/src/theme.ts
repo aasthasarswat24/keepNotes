@@ -23,11 +23,14 @@ export const customTheme = createTheme({
 				button: {
 					borderRadius: '50%',
 					padding: '5px',
-					backgroundColor: '#26282A',
+					backgroundColor: '#DCDCDC',
 					color: '#f1f1f1',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
+					'&:hover': {
+						background: '#9A9A9A',
+					},
 				},
 			},
 		},

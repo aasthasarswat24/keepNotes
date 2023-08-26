@@ -109,23 +109,26 @@ export const NoteEditable: React.FC<NoteEditableProps> = ({
 				</DialogContent>
 			</form>
 			<DialogActions
-				sx={{ paddingX: 4, display: 'flex', justifyContent: 'space-between' }}
+				sx={{ padding: 4, display: 'flex', justifyContent: 'space-between' }}
 			>
 				<Box sx={{ display: 'flex', gap: 2 }}>
-					<Link sx={{ margin: '0 auto' }} href='#'>
-						<LabelIcon />
+					<Link component='button'>
+						<LabelIcon fontSize='small' sx={{ color: 'primary.dark' }} />
 					</Link>
-					<Link sx={{ margin: '0 auto' }} href='#'>
-						<NotificationsActiveIcon />
+					<Link component='button'>
+						<NotificationsActiveIcon
+							fontSize='small'
+							sx={{ color: 'primary.dark' }}
+						/>
 					</Link>
-					<Link sx={{ margin: '0 auto' }} href='#'>
-						<ArchiveIcon />
+					<Link component='button'>
+						<ArchiveIcon fontSize='small' sx={{ color: 'primary.dark' }} />
 					</Link>
-					<Link sx={{ margin: '0 auto' }} href='#'>
-						<AttachmentIcon />
+					<Link component='button'>
+						<AttachmentIcon fontSize='small' sx={{ color: 'primary.dark' }} />
 					</Link>
-					<Link sx={{ margin: '0 auto' }} href='#'>
-						<SendIcon />
+					<Link component='button'>
+						<SendIcon fontSize='small' sx={{ color: 'primary.dark' }} />
 					</Link>
 				</Box>
 				<Typography>time</Typography>
