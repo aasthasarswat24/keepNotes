@@ -1,5 +1,4 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import { Box, Link, Theme } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -48,33 +47,36 @@ export const NoteCard: React.FC<NoteCardProps> = ({
 
 	return (
 		<>
-			<Card className={classes.card}>
-				<CardContent
-					sx={{
-						padding: 0,
-						display: 'flex',
-						flexDirection: 'column',
-						gap: 1,
-						height: 250,
-						overflow: 'hidden',
-					}}
-				>
-					<Typography variant='h6'>{note.title && note.title}</Typography>
-					<Typography variant='body1'>
-						{note.description && note.description}
-					</Typography>
-				</CardContent>
-				<Box className={classes.noteFooter}>
-					<Box display='flex' gap={1}>
-						<Link component='button' onClick={() => deleteNote(note.id)}>
-							<DeleteIcon fontSize='small' />
-						</Link>
-						<Link component='button' onClick={handleDialog}>
-							<EditIcon fontSize='small' />
-						</Link>
+			<Link onClick={handleDialog} sx={{ textDecoration: 'none' }}>
+				<Card className={classes.card}>
+					<CardContent
+						sx={{
+							padding: 0,
+							display: 'flex',
+							flexDirection: 'column',
+							gap: 1,
+							height: 250,
+							overflow: 'hidden',
+						}}
+					>
+						<Typography variant='h6'>{note.title && note.title}</Typography>
+						<Typography variant='body1'>
+							{note.description && note.description}
+						</Typography>
+					</CardContent>
+					<Box className={classes.noteFooter}>
+						<Typography variant='body1'>{note.time}</Typography>
+						<Box display='flex' gap={1}>
+							<Link component='button' onClick={() => deleteNote(note.id)}>
+								<DeleteIcon fontSize='small' sx={{ color: 'primary.dark' }} />
+							</Link>
+							{/* <Link component='button' onClick={handleDialog}>
+							<EditIcon fontSize='small' sx={{ color: 'primary.dark' }} />
+						</Link> */}
+						</Box>
 					</Box>
-				</Box>
-			</Card>
+				</Card>
+			</Link>
 			<NoteEditable
 				open={openEditable}
 				handleClose={handleDialog}
