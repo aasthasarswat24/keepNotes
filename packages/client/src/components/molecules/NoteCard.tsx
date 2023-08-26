@@ -47,7 +47,10 @@ export const NoteCard: React.FC<NoteCardProps> = ({
 
 	return (
 		<>
-			<Link onClick={handleDialog} sx={{ textDecoration: 'none' }}>
+			<Link
+				onClick={handleDialog}
+				sx={{ textDecoration: 'none', width: '100%' }}
+			>
 				<Card className={classes.card}>
 					<CardContent
 						sx={{
