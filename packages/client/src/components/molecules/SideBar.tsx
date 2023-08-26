@@ -1,9 +1,11 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Link, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { useState } from 'react';
 
-import Logo from '../atoms/Logo';
 import { generateUniqueId } from '../../helpers/generateUniqueId';
+import Logo from '../atoms/Logo';
+import { CreateNoteDialog } from './CreateNoteDialog';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	sideBarContainer: {
@@ -23,39 +25,27 @@ interface SideBarProps {
 export const SideBar: React.FC<SideBarProps> = ({ addNote }) => {
 	const classes = useStyles();
 
-	const handleAddNote = (note: Note) => {
-		const noteId = generateUniqueId();
-		const newNote = {
-			id: noteId,
-			title: note.title,
-			description: note.description,
-		};
-		addNote(newNote);
-	};
+	const [openNewNoteDialog, setOpenNewNoteDialog] = useState(false);
 
-	const DUMMY_NOTE: Note = {
-		id: `${Math.random}note`,
-		title: 'this is title of new note',
-		description: 'this is note one',
-		label: 'this is note one',
-		date: new Date(),
-		time: '00:00:00',
-		color: 'white',
-		completed: false,
-		priority: 'low',
-		attachments: [],
-		reminders: [],
+	const handleDialog = () => {
+		setOpenNewNoteDialog(!openNewNoteDialog);
 	};
 
 	return (
 		<Box className={classes.sideBarContainer}>
 			<Logo />
 			<Link
-				sx={{ padding: '10px', margin: '0 auto' }}
-				component='button'
-				onClick={() => {
-					handleAddNote(DUMMY_NOTE);
+				sx={{
+					padding: '10px',
+					margin: '0 auto',
+					color: 'white',
+					backgroundColor: 'primary.dark',
+					'&:hover': {
+						backgroundColor: 'primary.dark',
+					},
 				}}
+				component='button'
+				onClick={handleDialog}
 			>
 				<AddIcon fontSize='large' />
 			</Link>
@@ -72,6 +62,13 @@ export const SideBar: React.FC<SideBarProps> = ({ addNote }) => {
 					</ListItem>
 				))}
 			</List> */}
+
+			<CreateNoteDialog
+				open={openNewNoteDialog}
+				handleClose={handleDialog}
+				noteId={generateUniqueId()}
+				addNote={addNote}
+			/>
 		</Box>
 	);
 };
