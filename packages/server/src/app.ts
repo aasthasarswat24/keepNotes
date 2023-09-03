@@ -1,9 +1,9 @@
 import bodyParser from 'body-parser';
+import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
-import express, { Request, Response, NextFunction } from 'express';
 
-import { router } from './routes';
 import { ApplicationError } from './errors/application-error';
+import { router } from './routes';
 
 export const app = express();
 
